@@ -1,3 +1,6 @@
 bazel-*
 
 build/tmp
+
+.DS_Store
+.idea/
