@@ -71,12 +71,12 @@ def _controller_gen_crd_impl(ctx):
     outputdir = ctx.actions.declare_directory(ctx.label.name)
     cg_cmd = "crd"
     extra_args = []
-    if ctx.attr.trivialVersions:
-        extra_args.append("trivialVersions=true")
-    if ctx.attr.preserveUnknownFields:
-        extra_args.append("preserveUnknownFields=true")
+    if ctx.attr.allowDangerousTypes:
+        extra_args.append("allowDangerousTypes=true")
     if ctx.attr.generateEmbeddedObjectMeta:
         extra_args.append("generateEmbeddedObjectMeta=true")
+    if ctx.attr.ignoreUnexportedFields:
+        extra_args.append("ignoreUnexportedFields=true")
     if ctx.attr.crdVersions:
         fail("Unsuppored argument, please file a feature request")
     if ctx.attr.maxDescLen:
@@ -135,14 +135,14 @@ COMMON_ATTRS = {
 def _crd_extra_attrs():
     ret = COMMON_ATTRS
     ret.update({
-        "trivialVersions": attr.bool(
-            default = True,
-        ),
-        "preserveUnknownFields": attr.bool(
+        "allowDangerousTypes": attr.bool(
             default = False,
         ),
         "generateEmbeddedObjectMeta": attr.bool(
             default = False,
+        ),
+        "ignoreUnexportedFields": attr.bool(
+            default = True,
         ),
         "crdVersions": attr.string_list(
         ),
