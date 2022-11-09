@@ -28,7 +28,7 @@ def _kubebuilder_download_sdk_impl(ctx):
 _kubebuilder_download_sdk = repository_rule(
     _kubebuilder_download_sdk_impl,
     attrs = {
-        "version": attr.string(default = "2.3.1"),
+        "version": attr.string(default = "3.7.0"),
         "urls": attr.string_list(
             default = [
                 "https://github.com/kubernetes-sigs/kubebuilder/releases/download/v{version}/kubebuilder_{version}_{platform}.tar.gz",
@@ -50,7 +50,7 @@ def _detect_host_platform(ctx):
         fail("Unsupported operating system: " + ctx.os.name)
     return host
 
-def kubebuilder_register_sdk(version = "2.3.1"):
+def kubebuilder_register_sdk(version = "3.7.0"):
     kubebuilder_download_sdk(
         name = "kubebuilder_sdk",
         version = version,
