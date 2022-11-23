@@ -36,7 +36,7 @@ def _controller_gen_action(ctx, cg_cmd, outputs, output_path):
         godir = go_ctx.go.path[:-1 - len(go_ctx.go.basename)],
         gopath = gopath,
         cmd = "$(pwd)/" + cg_info.controller_gen_bin.path,
-        args = "{cg_cmd} paths={{{files}}} output:dir=\"{outputpath}\"".format(
+        args = "{cg_cmd} paths={{{files}}} output:dir=\\\"{outputpath}\\\"".format(
             cg_cmd = cg_cmd,
             files = ",".join([f.path for f in ctx.files.srcs]),
             outputpath = output_path,
